@@ -17,7 +17,7 @@ import { MoveAnimalDto } from '../dto/move-animal.dto';
 @Controller('animals')
 export class AnimalController {
   constructor(
-    private readonly appService: AnimalService,
+    private readonly animalService: AnimalService,
     private readonly enclosureService: EnclosuresService,
   ) {}
 
@@ -32,7 +32,7 @@ export class AnimalController {
       throw new NotFoundException('You need an enclosure to add an animal');
     }
 
-    const res = await this.appService.createAnimal(createAnimalDto);
+    const res = await this.animalService.createAnimal(createAnimalDto);
     if (!res) {
       throw new BadRequestException('Animal not created');
     }
@@ -41,7 +41,7 @@ export class AnimalController {
 
   @Get()
   async findAll(): Promise<IAnimal[]> {
-    return this.appService.getAnimals();
+    return this.animalService.getAnimals();
   }
 
   @Put(':id/move')
@@ -49,6 +49,6 @@ export class AnimalController {
     @Param('id') animalId: number,
     @Body() moveAnimalDto: MoveAnimalDto,
   ) {
-    return this.appService.moveAnimal(animalId, moveAnimalDto.enclosure);
+    return this.animalService.moveAnimal(animalId, moveAnimalDto.enclosure);
   }
 }
