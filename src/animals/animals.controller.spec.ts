@@ -37,9 +37,9 @@ describe('AnimalController', () => {
       expect(animalController).toBeDefined()
     })
 
-    // const result: Animal[] = [];
-    // it('should return Empty Array', () => {
-    //   expect(animalController.findAll()).toStrictEqual([]);
-    // });
+    const result: Animal[] = [];
+    it('should return Empty Array', () => {
+      expect(animalController.findAll()).toStrictEqual([]);
+    });
   });
 });
